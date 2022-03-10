@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/POMODORO/static/css/main.ec0ec19d.css",
+    "main.js": "/POMODORO/static/js/main.a6757f43.js",
+    "static/js/787.f9f22430.chunk.js": "/POMODORO/static/js/787.f9f22430.chunk.js",
+    "static/media/Roboto-BoldItalic.ttf": "/POMODORO/static/media/Roboto-BoldItalic.60c1f67b002e61ad0fe4.ttf",
+    "static/media/Roboto-Bold.ttf": "/POMODORO/static/media/Roboto-Bold.75371f53f06181df75f1.ttf",
+    "static/media/FuturaBoldfont.ttf": "/POMODORO/static/media/FuturaBoldfont.7bfa561462fd51bcc460.ttf",
+    "index.html": "/POMODORO/index.html",
+    "main.ec0ec19d.css.map": "/POMODORO/static/css/main.ec0ec19d.css.map",
+    "main.a6757f43.js.map": "/POMODORO/static/js/main.a6757f43.js.map",
+    "787.f9f22430.chunk.js.map": "/POMODORO/static/js/787.f9f22430.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ec0ec19d.css",
+    "static/js/main.a6757f43.js"
+  ]
+}
