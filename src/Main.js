@@ -236,7 +236,7 @@ function Main() {
                         })}
                     </div>
 
-                    <a href="#123" className="more">
+                    <a href="#/list" className="more">
                         {appState.task[4] ? '...' : ''} MORE
                     </a>
                 </ul>
