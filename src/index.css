@@ -1,13 +1,822 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans',
+        'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+@font-face {
+    font-family: Roboto;
+    src: url(./Roboto/Roboto-Bold.ttf) format('opentype'), url(./Roboto/Roboto-BoldItalic.ttf) format('opentype');
+}
+@font-face {
+    font-family: futura;
+    src: url(./futura/FuturaBoldfont.ttf) format('opentype');
+    /* src: url(./futura/FuturaBoldfont.ttf) format('opentype'), url(./futura/futur.ttf) format('opentype'),
+        url(./futura/Futura\ Bold\ Italic\ font.ttf) format('opentype'),
+        url(./futura/futura\ medium\ bt.ttf) format('opentype'), url(./futura/Futura\ Book\ font.ttf) format('opentype'),
+        url(./futura/futura\ medium\ condensed\ bt.ttf) format('opentype'); */
+}
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+.flex {
+    display: flex;
+}
+.homepageLeft {
+    width: calc(100vw * 830 / 1280);
+    height: 800px;
+    box-sizing: border-box;
+    padding-left: 85px;
+    padding-top: 48px;
+    background: var(--secondColor);
+}
+.homepageRight {
+    width: calc(100vw * 450 / 1280);
+    height: 800px;
+    background: #003164;
+}
+.addTask {
+    width: 445px;
+    height: 56px;
+    padding-left: 17px;
+    background: #ffffff;
+
+    border: none;
+    outline: medium;
+    text-align: left;
+    font: italic normal bold 16px/19px Roboto;
+    letter-spacing: 0px;
+    color: var(--primaryColor);
+    text-transform: uppercase;
+    box-sizing: border-box;
+}
+::placeholder {
+    color: var(--primaryColor);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.addTaskButton {
+    transform: translate(-45px, 2px);
+    width: 24px;
+    height: 24px;
+    color: var(--primaryColor);
+    font-size: 24px;
+    background: transparent;
+    border: none;
+    outline: medium;
 }
+.setTomatoNumberOutside {
+    overflow: hidden;
+    width: 500px;
+    height: var(--setNumber);
+    transition: all 0.5s;
+    position: absolute;
+}
+.setTomatoNumber {
+    width: 302px;
+}
+
+.tomatoHint {
+    border-radius: 50%;
+    border: 1px solid var(--primaryColor);
+    background-color: #fff;
+    color: var(--primaryColor);
+    transform: translate(6px, 0px);
+}
+.tomatoHintExplain {
+    width: 226px;
+    color: #003164;
+}
+.addTaskSend {
+    transform: translate(16px, 0px);
+}
+.currentTask {
+    z-index: 1;
+    margin-top: 145px;
+}
+.currentTaskName {
+    /* position: absolute;
+    top: 249px;
+    left: 149px; */
+    width: 450px;
+    height: 28px;
+    text-align: left;
+    font: normal normal bold 24px/28px Roboto;
+    letter-spacing: 0px;
+    color: #003164;
+    text-transform: uppercase;
+    list-style-type: none;
+    overflow: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+.schedule {
+    margin-top: 8px;
+    visibility: var(--firstTask);
+}
+.scheduleIcon {
+    margin-right: 8px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #003164;
+}
+.scheduleIcon:nth-last-child(1) {
+    background: transparent;
+    position: absolute;
+    margin-left: calc(var(--intactTomatoTimes) * 1px * 20 + var(--timeLeft) * 1px * 6 / 271);
+    width: calc(var(--timeWidth) * 1px * 6 / 271);
+    height: 12px;
+    overflow: hidden;
+    border-radius: 0 6px 6px 0;
+    /* border:  1px solid black; */
+}
+.scheduleIcon:nth-last-child(1)::before,
+.scheduleIcon:nth-last-child(1)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 6px;
+    width: 6px;
+    height: 12px;
+    border-radius: 6px 0 0 6px;
+    transform-origin: 6px 6px;
+    background-color: var(--primaryColor);
+}
+.scheduleIcon:nth-last-child(1)::before {
+    transform: rotate(calc(var(--time) * 1deg));
+}
+.scheduleIcon:nth-last-child(1)::after {
+    transform: rotate(180deg);
+    background-color: var(--timeRightHalfColor);
+}
+.iconBorder {
+    position: absolute;
+    transform: translate(0px, 8px);
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-left: calc(var(--intactTomatoTimes) * 1px * 20);
+    border: 1px solid var(--primaryColor);
+    visibility: var(--firstTask);
+}
+
+.currentTaskIcon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 2px solid #003164;
+    margin-right: 16px;
+    visibility: var(--firstTask);
+}
+.timer {
+    width: 454px;
+    height: 206px;
+    text-align: center;
+    font: normal normal bold 176px/176px Roboto;
+    letter-spacing: 0px;
+    color: var(--primaryColor);
+    visibility: var(--firstTask);
+}
+
+.secondTask {
+    visibility: var(--secondTask);
+}
+.thirdTask {
+    visibility: var(--thirdTask);
+}
+.fourTask {
+    visibility: var(--fourTask);
+}
+
+ul {
+    position: relative;
+    width: 445px;
+
+    padding-left: 0;
+    margin-top: 107px;
+}
+.listOverflow3 {
+    height: 130px;
+    overflow: auto;
+    overflow-x: hidden;
+}
+ul li {
+    position: relative;
+    list-style-type: none;
+    width: 445px;
+    height: 32px;
+    padding-left: 29px;
+    margin-bottom: 9px;
+    box-sizing: border-box;
+    border-bottom: 2px solid #e3d8e7;
+    overflow: auto;
+    white-space: nowrap;
+    display: flex;
+    justify-content: space-between;
+}
+ul li::before {
+    position: absolute;
+    left: 0px;
+    content: '';
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid #003164;
+}
+
+.changeFirstTask {
+    margin-right: 6px;
+    z-index: 1;
+    cursor: pointer;
+    content: '';
+    width: 24px;
+    height: 24px;
+    background: transparent url('img/1x/baseline_play_circle_outline_black_24dp.png') 0% 0% no-repeat padding-box;
+    filter: invert(13%) sepia(59%) saturate(2843%) hue-rotate(196deg) brightness(97%) contrast(103%);
+}
+a {
+    text-decoration: none;
+}
+.more {
+    position: absolute;
+    right: 0px;
+    /* width: 44px; */
+    height: 19px;
+    text-align: right;
+    font: normal normal bold 16px/19px Roboto;
+    letter-spacing: 0px;
+    color: var(--primaryColor);
+    text-transform: uppercase;
+}
+.tomatoPeel {
+    position: absolute;
+    top: 130px;
+    left: calc(100vw * 556 / 1280);
+    right: calc(100vw * 180 / 1280);
+    margin: 0 auto;
+    width: 540px;
+    height: 540px;
+    border: 4px solid var(--primaryColor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+}
+.tomatoTime {
+    position: absolute;
+    margin-left: calc(var(--timeLeft) * 1px);
+    width: calc(var(--timeWidth) * 1px);
+    height: 542px;
+    overflow: hidden;
+    border-radius: 0 271px 271px 0;
+}
+.tomatoTime::before,
+.tomatoTime::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 271px;
+    width: 271px;
+    height: 542px;
+    border-radius: 271px 0 0 271px;
+    transform-origin: 271px 271px;
+    background-color: var(--primaryColor);
+}
+.tomatoTime::before {
+    transform: rotate(calc(var(--time) * 1deg));
+}
+.tomatoTime::after {
+    transform: rotate(180deg);
+    background-color: var(--timeRightHalfColor);
+}
+.tomatoBody {
+    box-sizing: border-box;
+    border: 4px solid var(--primaryColor);
+    width: 500px;
+    height: 500px;
+    background-color: var(--tomatoBodyColor);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+.tomatoSeed {
+    position: relative;
+    width: 96px;
+    height: 96px;
+    background: transparent var(--tomatoSeedBackground) no-repeat;
+    cursor: pointer;
+    z-index: 2;
+}
+.tomatoStop {
+    position: absolute;
+    bottom: 224px;
+    right: 203px;
+    width: 24px;
+    height: 24px;
+    background: transparent var(--tomatoStopBackground) no-repeat;
+    z-index: 2;
+    cursor: pointer;
+}
+.homepageNav {
+    float: right;
+    height: 800px;
+    width: 36px;
+    margin-right: 85px;
+}
+.marginTop48 {
+    margin-top: 48px;
+}
+.marginTop335 {
+    margin-top: 335px;
+}
+.listIcon {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    background: transparent url('img/1x/baseline_list_white_36dp.png');
+}
+.chartIcon {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    background: transparent url('img/1x/baseline_insert_chart_white_36dp.png');
+}
+.musicIcon {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    background: transparent url('img/1x/baseline_library_music_white_36dp.png');
+}
+.POMODORO {
+    width: 31px;
+
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+    text-align: left;
+    font: bold 29px/32px Futura;
+    letter-spacing: 1px;
+    color: #ffffff;
+    opacity: 1;
+}
+
+/* Option start */
+.wrap {
+    position: absolute;
+    width: 100%;
+    height: 800px;
+    background: #003164;
+}
+.optionNav {
+    margin-left: 85px;
+    display: flex;
+    flex-direction: column;
+}
+.optionSpan {
+    margin-left: 8px;
+    width: 192px;
+    height: 42px;
+
+    text-align: center;
+    font: normal normal bold 36px/36px Roboto;
+    letter-spacing: 0px;
+    color: #ffffff33;
+    text-transform: uppercase;
+}
+.right85 {
+    position: absolute;
+    right: 85px;
+}
+.bottom48 {
+    position: absolute;
+    bottom: 48px;
+}
+.alignCenter {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+.width260 {
+    width: 260px;
+}
+.navList {
+    color: var(--navList);
+}
+.navChart {
+    color: var(--navChart);
+}
+.navMusic {
+    color: var(--navMusic);
+}
+.taskMountainOutside {
+    position: absolute;
+    bottom: 0;
+    left: 85px;
+    width: 350px;
+    height: 233px;
+    overflow: hidden;
+}
+.taskMountainBottom {
+    position: absolute;
+    bottom: -175px;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    background: var(--secondColor);
+    display: flex;
+    justify-content: center;
+}
+.taskMountainBlue {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    width: 116px;
+    height: 116px;
+    border-radius: 50%;
+    background: #003164;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.taskMountainTopBorder {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid var(--primaryColor);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    z-index: 3;
+}
+.taskMountainTopBack {
+    position: absolute;
+    top: 25px;
+    left: 25px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: white;
+    z-index: 0;
+}
+
+.taskMountainTime {
+    position: absolute;
+    top: 57px;
+    /* right: 0;
+    left: 0;
+    margin: 0 auto; */
+    font: normal normal bold 64px/64px Roboto;
+    letter-spacing: 0px;
+    color: var(--primaryColor);
+    z-index: 1;
+}
+.taskMountainName {
+    position: absolute;
+    top: 132px;
+    font: normal normal bold 16px/24px Roboto;
+    letter-spacing: 0px;
+    color: #003164;
+    text-transform: uppercase;
+    z-index: 1;
+    text-align: center;
+}
+.flexCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Option end */
+/* list start*/
+.listWrap {
+    position: absolute;
+    left: calc(100vw * 560 / 1280);
+    padding-top: 48px;
+}
+.undoneList {
+    margin-top: 48px;
+
+    width: 445px;
+    height: 44px;
+    background: #ffffff33;
+    font: normal normal bold 24px/36px Roboto;
+    letter-spacing: 0px;
+    color: #ffffff;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 4px;
+    display: flex;
+    justify-content: space-between;
+}
+.undoneListTaskOutside {
+    box-sizing: border-box;
+    margin-top: 19px;
+    height: var(--undoneListH);
+    overflow: var(--undoneListOverflow);
+    transition: all 0.5s;
+}
+.undoneListTask {
+    position: relative;
+    list-style-type: none;
+    width: 445px;
+    height: 32px;
+    padding-left: 24px;
+    margin-bottom: 9px;
+    box-sizing: border-box;
+    border-bottom: 2px solid #1b4775;
+    font: normal normal bold 16px/20px Roboto;
+    color: #ffffff;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    overflow: auto;
+    white-space: nowrap;
+}
+
+.undoneListTask::before {
+    position: absolute;
+    left: 0px;
+    margin: auto 0;
+    content: '';
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+.absoluteDoneList {
+    position: absolute;
+    top: 498px;
+}
+.doneList {
+    width: 445px;
+    height: 44px;
+    background: #ffffff33;
+    font: normal normal bold 24px/36px Roboto;
+    letter-spacing: 0px;
+    color: #ffffff;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 4px;
+    display: flex;
+    justify-content: space-between;
+}
+.doneListTaskOutside {
+    box-sizing: border-box;
+    margin-top: 19px;
+    height: var(--doneListH);
+    overflow: var(--doneListOverflow);
+    transition: all 0.5s;
+    
+}
+.doneListTask {
+    position: relative;
+    list-style-type: none;
+    width: 445px;
+    height: 32px;
+    padding-left: 24px;
+    margin-bottom: 9px;
+    box-sizing: border-box;
+    border-bottom: 2px solid #1b4775;
+    font: italic normal bold 16px/20px Roboto;
+    color: #ffffff;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: space-between;
+    overflow: auto;
+}
+.doneListTask::before {
+    position: absolute;
+    left: 0px;
+    margin: auto 0;
+    content: '✓';
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    border: 2px solid white;
+    font-size: 11px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.doneListTaskName {
+    text-decoration: line-through;
+    /* width: 260px; */
+    position: relative;
+    white-space: nowrap;
+    /* 文字省略不換行 */
+    /* overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap; */
+}
+/* 捲軸底色 */
+*::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
+    background-color: transparent;
+}
+/* 捲軸寬度 */
+*::-webkit-scrollbar {
+    height: 6px;
+    width: 6px;
+    background-color: transparent;
+}
+/* 捲軸本體顏色 */
+*::-webkit-scrollbar-thumb {
+    background-color: #fff;
+}
+.doneListTaskTimes {
+    display: flex;
+    width: 160px;
+}
+.doneListTaskTomato {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ffffff;
+    margin-left: 8px;
+    margin-top: 2px;
+}
+/* list end*/
+/* music end*/
+.musicWrap {
+    width: 445px;
+    position: absolute;
+    left: calc(100vw * 560 / 1280);
+    padding-top: 45px;
+}
+.musicApply {
+    width: 445px;
+    height: 44px;
+    background: #ffffff33;
+    font: normal normal bold 24px/44px Roboto;
+    box-sizing: border-box;
+
+    padding-left: 16px;
+    padding-right: 16px;
+    color: #ffffff;
+}
+.musicTypeWrap {
+    height: 246px;
+    width: 445px;
+    box-sizing: border-box;
+    padding-top: 16px;
+    padding-bottom: 46px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+input[type='radio'] {
+    display: none;
+}
+input[type='radio'] + div {
+    /* position: absolute;
+    left: 0px;
+    margin: auto 0; */
+    transform: translate(-4px, 0px);
+    content: '';
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+input[type='radio'] + div span {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+    box-sizing: border-box;
+}
+input[type='radio']:checked + div {
+    border: 2px solid #d7528a;
+}
+input[type='radio']:checked + div span {
+    background-color: #ff4384;
+}
+.musicTypeName {
+    width: 33%;
+    padding-left: 4px;
+    font: normal normal bold 16px/18px Roboto;
+    letter-spacing: 0px;
+    color: #ffffff;
+
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+}
+/* music end*/
+/* chart start */
+.focusContainer {
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    padding-top: 16px;
+    padding-bottom: 46px;
+}
+.subtotalTitle {
+    font: normal normal bold 16px/36px Roboto;
+    color: #ffffff;
+}
+.subtotalNumber {
+    font: normal normal bold 64px/64px Roboto;
+    color: #ff4384;
+}
+.subtotalTomato {
+    font: normal normal bold 16px/16px Roboto;
+    color: #ffffff33;
+}
+.space-between {
+    display: flex;
+    justify-content: space-between;
+}
+.chartPeriod {
+    font: normal normal bold 16px/24px Roboto;
+    color: #ffffff;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+}
+.chartContainer {
+    padding-top: 16.5px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.chartTimes {
+    padding-top: 2px;
+    width: 19px;
+    font: normal normal bold 16px/19.5px Roboto;
+    color: #ffffff;
+}
+.chartDate {
+    width:420px ;
+    font: normal normal bold 16px/24px Roboto;
+    color: #ffffff;
+    
+}
+.chartMain {
+    width: 420px;
+    height: 243px;
+
+    border-left: 1px solid #ffffff;
+    border-bottom: 1px solid #ffffff;
+    margin-bottom: 16.5px;
+    display: flex;
+    align-items: flex-end;
+}
+.marginLeft32{
+    margin-left: 32px;
+}
+.chartBox1{
+    width: 28px;
+    height: var(--Box1h);
+    background-color: #fff;
+    margin-left: 28.3px;
+}
+.chartBox2{
+    width: 28px;
+    height: var(--Box2h);
+    background-color: #fff;
+    margin-left: 28.3px;
+}
+.chartBox3{
+    width: 28px;
+    height:var(--Box3h);
+    background-color: #fff;
+    margin-left: 28.3px;
+}
+.chartBox4{
+    width: 28px;
+    height: var(--Box4h);
+    background-color: #fff;
+    margin-left: 28.3px;
+}
+.chartBox5{
+    width: 28px;
+    height: var(--Box5h);
+    background-color: #fff;
+    margin-left: 28.3px;
+}
+.chartBox6{
+    width: 28px;
+    height: var(--Box6h);
+    background-color: #fff;
+    margin-left: 28.3px;
+}
+.chartBox7{
+    width: 28px;
+    height: var(--Box7h);
+    background-color: #FF4384;
+    margin-left: 28.3px;
+}
+/* chart end */
