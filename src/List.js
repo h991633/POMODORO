@@ -30,7 +30,7 @@ export default function List() {
         <div>
             <Option />
             <div
-                className="listWrap"
+                className="musicWrap"
                 style={{
                     '--primaryColor': '#FF4384',
                     
@@ -90,7 +90,7 @@ export default function List() {
                                     {task.originalTomatoTimes > 8 ? (
                                         <div className="doneListTaskTimes">
                                             <div className="doneListTaskTomato"></div>
-                                            <span> X {task.originalTomatoTimes}</span>
+                                            <span>&nbsp; X {task.originalTomatoTimes}</span>
                                         </div>
                                     ) : (
                                         <div className="doneListTaskTimes">

@@ -54,9 +54,9 @@ code {
 ::placeholder {
     color: var(--primaryColor);
 }
-
 .addTaskButton {
-    transform: translate(-45px, 2px);
+    position: absolute;
+    transform: translate(-45px, 12px);
     width: 24px;
     height: 24px;
     color: var(--primaryColor);
@@ -150,6 +150,9 @@ code {
     transform: rotate(180deg);
     background-color: var(--timeRightHalfColor);
 }
+.scheduleTimes {
+    transform: translate(0px, -6px);
+}
 .iconBorder {
     position: absolute;
     transform: translate(0px, 8px);
@@ -159,6 +162,7 @@ code {
     margin-left: calc(var(--intactTomatoTimes) * 1px * 20);
     border: 1px solid var(--primaryColor);
     visibility: var(--firstTask);
+    display: var(--iconBorder);
 }
 
 .currentTaskIcon {
@@ -490,14 +494,17 @@ a {
     justify-content: center;
     align-items: center;
 }
-
+.rwdBackHome {
+    display: none;
+}
 /* Option end */
 /* list start*/
-.listWrap {
+/* .listWrap {
     position: absolute;
     left: calc(100vw * 560 / 1280);
     padding-top: 48px;
-}
+} */
+
 .undoneList {
     margin-top: 48px;
 
@@ -575,7 +582,6 @@ a {
     height: var(--doneListH);
     overflow: var(--doneListOverflow);
     transition: all 0.5s;
-    
 }
 .doneListTask {
     position: relative;
@@ -652,6 +658,7 @@ a {
     left: calc(100vw * 560 / 1280);
     padding-top: 45px;
 }
+
 .musicApply {
     width: 445px;
     height: 44px;
@@ -759,10 +766,9 @@ input[type='radio']:checked + div span {
     color: #ffffff;
 }
 .chartDate {
-    width:420px ;
+    width: 420px;
     font: normal normal bold 16px/24px Roboto;
     color: #ffffff;
-    
 }
 .chartMain {
     width: 420px;
@@ -774,49 +780,265 @@ input[type='radio']:checked + div span {
     display: flex;
     align-items: flex-end;
 }
-.marginLeft32{
+.marginLeft32 {
     margin-left: 32px;
 }
-.chartBox1{
+.chartBox1 {
     width: 28px;
     height: var(--Box1h);
     background-color: #fff;
     margin-left: 28.3px;
 }
-.chartBox2{
+.chartBox2 {
     width: 28px;
     height: var(--Box2h);
     background-color: #fff;
     margin-left: 28.3px;
 }
-.chartBox3{
+.chartBox3 {
     width: 28px;
-    height:var(--Box3h);
+    height: var(--Box3h);
     background-color: #fff;
     margin-left: 28.3px;
 }
-.chartBox4{
+.chartBox4 {
     width: 28px;
     height: var(--Box4h);
     background-color: #fff;
     margin-left: 28.3px;
 }
-.chartBox5{
+.chartBox5 {
     width: 28px;
     height: var(--Box5h);
     background-color: #fff;
     margin-left: 28.3px;
 }
-.chartBox6{
+.chartBox6 {
     width: 28px;
     height: var(--Box6h);
     background-color: #fff;
     margin-left: 28.3px;
 }
-.chartBox7{
+.chartBox7 {
     width: 28px;
     height: var(--Box7h);
-    background-color: #FF4384;
+    background-color: #ff4384;
     margin-left: 28.3px;
 }
 /* chart end */
+@media screen and (max-width: 1277px) {
+    .timer {
+        font: normal normal bold 55px/55px Roboto;
+        text-align: left;
+        display: flex;
+        align-items: center;
+        padding-left: 33px;
+        padding-top: 46px;
+        box-sizing: border-box;
+    }
+    .tomatoPeel {
+        transform: scale(0.4);
+        top: 147px;
+        margin: 0;
+        left: 127px;
+    }
+    .homepageLeft {
+        width: calc(100vw * 987 / 1280);
+        padding-left: calc(100vw * 85 / 1280);
+    }
+    .homepageRight {
+        width: calc(100vw * 293 / 1280);
+        display: flex;
+        justify-content: center;
+    }
+    .homepageNav {
+        margin-right: 0;
+        float: none;
+    }
+    /* option start */
+    .right85 {
+        display: none;
+    }
+
+    .optionNav {
+        margin-left: calc((100vw - 767px) * 0.16 + 10px);
+    }
+    .taskMountainOutside {
+        left: calc((100vw - 767px) * 0.16 + 10px);
+    }
+}
+@media screen and (max-width: 842px) {
+    .optionNav {
+        margin: 0;
+        flex-direction: row;
+        width: 100vw;
+        justify-content: space-evenly;
+        z-index: 2;
+    }
+    .optionNav .marginTop48 {
+        margin-top: 0px;
+    }
+    .optionNav .width260 {
+        width: 48px;
+    }
+    .optionSpan {
+        display: none;
+    }
+    .taskMountainOutside {
+        display: none;
+    }
+    .musicWrap {
+        left: 0;
+        right: 0;
+        margin: auto;
+        padding-top: 0;
+        margin-top: 75px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 100vw;
+    }
+   
+    .rwdBackHome {
+        display: inline-block;
+    }
+    .wrap {
+        height: 900px;
+    }
+
+    
+}
+@media screen and (max-width: 767px) {
+    .homepageLeft {
+        width: 100vw;
+        padding-left: calc((100vw - 280px) / 2 + 10px);
+        margin-top: 45px;
+    }
+    .homepageRight {
+        position: absolute;
+        width: 100vw;
+        height: auto;
+    }
+    .homepageNav {
+        margin-right: 0;
+        float: none;
+        width: 100vw;
+
+        height: 68px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+    }
+    .homepageNav .marginTop48 {
+        margin-top: 0px;
+    }
+    .POMODORO {
+        display: none;
+    }
+    .addTask {
+        width: 246px;
+        font: italic normal bold 12px/19px Roboto;
+    }
+    .setTomatoNumber {
+        width: 163px;
+    }
+
+    .currentTaskName {
+        width: 194px;
+        font: normal normal bold 13px/28px Roboto;
+        overflow : hidden;
+        text-overflow : ellipsis;
+        white-space : nowrap;
+    }
+
+    .addTaskSend {
+        transform: translate(12px, 0px);
+    }
+    .currentTask {
+        margin-top: 75px;
+    }
+
+    .tomatoPeel {
+        top: 119px;
+        left: calc((100vw - 280px) / 2 - 132px);
+    }
+    .timer {
+        height: unset;
+        width: 100%;
+        padding-left: 0;
+        padding-right: calc((100vw - 280px) / 2 + 10px);
+        justify-content: center;
+        padding-top: 241px;
+    }
+    ul {
+        margin-top: 10px;
+        width: 266px;
+    }
+    ul li {
+        width: 270px;
+    }
+    .schedule {
+        width: 194px;
+    }
+    .more {
+        right: 6px;
+    }
+
+    /* option start */
+
+    .undoneListTaskOutside {
+        overflow-x: hidden;
+        max-height: 254px;
+    }
+    .undoneList {
+        width: 280px;
+    }
+    .undoneListTask {
+        width: 280px;
+        font: normal normal bold 12px/20px Roboto;
+    }
+    .doneList {
+        width: 280px;
+    }
+    .doneListTask {
+        width: 280px;
+        font: normal normal bold 12px/20px Roboto;
+    }
+    .doneListTaskTomato {
+        width: 9px;
+        height: 9px;
+        margin-left: 5px;
+        margin-top: 5px;
+    }
+    /* chart rwd */
+
+    .musicApply {
+        width: 280px;
+        font: normal normal bold 18px/44px Roboto;
+    }
+    .focusContainer {
+        width: 280px;
+    }
+    .subtotalNumber {
+        font: normal normal bold 38px/64px Roboto;
+    }
+
+    .marginLeft32 {
+        margin-left: 11.3px;
+    }
+
+    .chartMain {
+        width: 240px;
+    }
+    .chartDate {
+        width: 260px;
+    }
+    .chartBox {
+        margin-left: 20.3px;
+    }
+    /* music rwd */
+
+    .musicTypeWrap {
+        width: 280px;
+    }
+}

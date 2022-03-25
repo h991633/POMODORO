@@ -213,8 +213,14 @@ const defaultMusic = {
 function music(state = defaultMusic, action) {
     switch (action.type) {
         case 'changeWorkMusic':
+            let M=new Audio( musicUrlList[action.payload])
+            M.play()
+            setTimeout(()=>{M.pause()},2000)
             return { ...state, workMusicName: action.payload, workMusicUrl: musicUrlList[action.payload] }
         case 'changeBreakMusic':
+            let Mu=new Audio( musicUrlList[action.payload])
+            Mu.play()
+            setTimeout(()=>{Mu.pause()},2000)
             return { ...state, breakMusicName: action.payload, breakMusicUrl: musicUrlList[action.payload] }
         default:
             return state

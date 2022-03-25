@@ -158,10 +158,16 @@ function Main() {
 
     useEffect(() => {
         setTimeDeg(isRest ? 360 - 360 * (remainingTime / 300) : 360 - 360 * (remainingTime / 1500))
-        let iconList = []
-        iconList.length = remainingTomatoTimes
-        iconList.fill(<div className="scheduleIcon"></div>)
-        setSchedule(iconList)
+        if (remainingTomatoTimes>8) {
+            let iconList = [<div className="scheduleIcon"></div>,<div className='scheduleTimes'>{"X"+remainingTomatoTimes}</div>]
+            setSchedule(iconList)
+        } else {
+            let iconList = []
+            iconList.length = remainingTomatoTimes
+            iconList.fill(<div className="scheduleIcon"></div>)
+            setSchedule(iconList)
+        }
+        
     }, [remainingTime, isRest, remainingTomatoTimes])
   
     return (
@@ -178,6 +184,7 @@ function Main() {
                 '--timeWidth': `${timeDeg >= 180 ? 542 : 271}`,
                 '--timeLeft': `${timeDeg >= 180 ? 0 : 271}`,
                 '--timeRightHalfColor': `${timeDeg >= 180 ? 'var(--primaryColor)' : 'transparent'}`,
+                '--iconBorder': remainingTomatoTimes>8?'none':'block',
                 '--intactTomatoTimes': remainingTomatoTimes - 1,
                 '--tomatoBodyColor': `${isCounting ? '#ffffff' : 'var(--primaryColor)'}`,
                 '--tomatoSeedBackground': `url(${
@@ -235,7 +242,6 @@ function Main() {
                             }
                         })}
                     </div>
-
                     <a href="#/list" className="more">
                         {appState.task[4] ? '...' : ''} MORE
                     </a>

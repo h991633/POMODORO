@@ -1,4 +1,3 @@
-
 import * as React from 'react'
 import { useSelector } from 'react-redux'
 import ClearIcon from '@mui/icons-material/Clear'
@@ -26,10 +25,10 @@ export default function Option() {
                 '--MountainTop': !isRest ? 'https://i.imgur.com/UM3lGFf.png' : 'https://i.imgur.com/9hf1iUG.png',
             }}
         >
-            <a href='/POMODORO/#'>
-            <div className="clearIcon marginTop48 right85 ">
-                <ClearIcon sx={{ fontSize: 48, color: 'white' }} />
-            </div>
+            <a href="/POMODORO/#">
+                <div className="clearIcon marginTop48 right85 ">
+                    <ClearIcon sx={{ fontSize: 48, color: 'white' }} />
+                </div>
             </a>
             <div className="POMODORO right85 bottom48">POMODORO</div>
             <div className="optionNav">
@@ -44,6 +43,9 @@ export default function Option() {
                 <a className="marginTop48 alignCenter width260" href="#/music">
                     <LibraryMusicIcon sx={{ fontSize: 48, color: 'var(--navMusic)' }} />
                     <span className="optionSpan navMusic">ringtones</span>
+                </a>
+                <a href="/POMODORO/#" className="marginTop48 alignCenter width260 rwdBackHome">
+                    <ClearIcon sx={{ fontSize: 48, color: 'white' }} />
                 </a>
             </div>
             <div className="taskMountainOutside">

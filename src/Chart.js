@@ -134,13 +134,13 @@ export default function Chart() {
                                 '--Box7h': `calc(9.666px*${todayTimes})`,
                             }}
                         >
-                            <div className="chartBox1"></div>
-                            <div className="chartBox2"></div>
-                            <div className="chartBox3"></div>
-                            <div className="chartBox4"></div>
-                            <div className="chartBox5"></div>
-                            <div className="chartBox6"></div>
-                            <div className="chartBox7"></div>
+                            <div className="chartBox1 chartBox"></div>
+                            <div className="chartBox2 chartBox"></div>
+                            <div className="chartBox3 chartBox"></div>
+                            <div className="chartBox4 chartBox"></div>
+                            <div className="chartBox5 chartBox"></div>
+                            <div className="chartBox6 chartBox"></div>
+                            <div className="chartBox7 chartBox"></div>
                         </div>
                         <div className="chartDate">
                             <span className="marginLeft32">7/1</span>
